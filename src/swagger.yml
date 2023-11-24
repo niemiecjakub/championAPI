@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  title: "Champion API"
+  description: "League of legends champion API"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+components:
+  parameters:
+    name:
+      name: "name"
+      description: "name of champion or property"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    category:
+      name: "category"
+      description: "Category property"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    other_category:
+        name: "other_category"
+        description: "othercategory property"
+        in: path
+        required: True
+        schema:
+          type: "string"
+    other_name:
+        name: "other_name"
+        description: "othername property"
+        in: path
+        required: True
+        schema:
+          type: "string"
+    key:
+      name: "key"
+      description: "Key of champion "
+      in: path
+      required: True
+      schema:
+        type: "string"
+    id:
+      name: "id"
+      description: "id of champion "
+      in: path
+      required: True
+      schema:
+        type: "integer"
+
+        
+paths:
+  /champion/all:
+    get:
+      operationId: "champions.champion_read_all"
+      tags:
+        - "Champions"
+      summary: "Get all champions data"
+      responses:
+        "200":
+          description: "Successfully read champions list"
+
+  /champion/{key}:
+    get:
+      operationId: "champions.champion_read_by_key"
+      tags:
+        - "Champions"
+      summary: "Get all champion data by key"
+      parameters:
+        - $ref: "#/components/parameters/key"
+      responses:
+        "200":
+          description: "Successfully read cha mpion"
+
+  /champion/id/{id}:
+    get:
+      operationId: "champions.champion_read_by_id"
+      tags:
+        - "Champions"
+      summary: "Get all champion data by id"
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        "200":
+          description: "Successfully read champion"
+  /champion/{category}/{name}/{other_category}/{other_name}:
+    get:
+      operationId: "category.combine_elements"
+      tags:
+        - "Champions"
+      summary: "Get list of all champions matching criteria"
+      parameters:
+        - $ref: "#/components/parameters/category"
+        - $ref: "#/components/parameters/other_category"
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/other_name"
+      responses:
+        "200":
+          description: "Successfully read category"
+
+  /{category}:
+    get:
+      operationId: "category.category_read_all"
+      tags:
+        - "Category"
+      summary: "Read all category data"
+      parameters:
+        - $ref: "#/components/parameters/category"
+      responses:
+        "200":
+          description: "Successfully read categories"
+
+  /{category}/{name}:
+    get:
+      operationId: "category.category_read_by_key"
+      tags:
+        - "Category"
+      summary: "Read specific category data "
+      parameters:
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/category"
+      responses:
+        "200":
+          description: "Successfully read category"
+
+  /category-list:
+    get:
+      operationId: "category.category_get_list"
+      tags:
+        - "Category"
+      summary: "Get list of all categories and names"
+      responses:
+        "200":
+          description: "Successfully read all category data"
+  
+  /category-name-value-list:
+    get:
+      operationId: "game.get_category_name_value_list"
+      tags:
+        - "Category"
+      summary: "Get list of all categories data formated in category-name dictionaries"
+      responses:
+        "200":
+          description: "Successfully read category"
+
+  /game-start:
+    get:
+      operationId: "game.get_game_fields"
+      tags:
+        - "Game"
+      summary: "Get game fields"
+      responses:
+        "200":
+          description: "Successfully read category"

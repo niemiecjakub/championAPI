@@ -1,0 +1,26 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOL Champion API</title>
+</head>
+<body>
+    <h1>
+        All league champions!
+    </h1>
+    <ul>
+        {% for champion in champions %}
+        <li>
+            <div>
+                <img src="{{ url_for('static',filename='icons/{}.png'.format(champion.key))}}" style="height: 50px;">
+                    <a href="{{ url_for('champion', key=champion.key) }}">
+                        {{ champion.name }}, {{ champion.title }} -- {{ champion.key }}
+                    </a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
