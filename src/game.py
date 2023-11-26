@@ -52,7 +52,7 @@ def get_game_fields():
         x, y, already_picked = ([] for i in range(3))
         x = get_fields(field_list, already_picked, field_posibility_number)
         y = get_fields(field_list, already_picked, field_posibility_number)
-        fields = list(itertools.product(x,y))
+        fields = list(itertools.product(y,x))
         game_fields = list(more_itertools.batched(fields, 3))
  
         if ensure_game_is_possible(fields):
