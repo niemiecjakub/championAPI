@@ -54,6 +54,16 @@ components:
 
         
 paths:
+  /champion/name-list:
+    get:
+      operationId: "champions.champion_name_list"
+      tags:
+        - "Champions"
+      summary: "Get all champion names"
+      responses:
+        "200":
+          description: "Successfully read champion names"
+
   /champion/all:
     get:
       operationId: "champions.champion_read_all"
@@ -64,7 +74,7 @@ paths:
         "200":
           description: "Successfully read champions list"
 
-  /champion/{key}:
+  /champion/key/{key}:
     get:
       operationId: "champions.champion_read_by_key"
       tags:
@@ -74,7 +84,19 @@ paths:
         - $ref: "#/components/parameters/key"
       responses:
         "200":
-          description: "Successfully read cha mpion"
+          description: "Successfully read champion"
+
+  /champion/name/{name}:
+    get:
+      operationId: "champions.champion_read_by_name"
+      tags:
+        - "Champions"
+      summary: "Get all champion data by name"
+      parameters:
+        - $ref: "#/components/parameters/name"
+      responses:
+        "200":
+          description: "Successfully read champion"
 
   /champion/id/{id}:
     get:
@@ -87,6 +109,7 @@ paths:
       responses:
         "200":
           description: "Successfully read champion"
+
   /champion/{category}/{name}/{other_category}/{other_name}:
     get:
       operationId: "category.combine_elements"
