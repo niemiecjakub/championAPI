@@ -1,12 +1,5 @@
-<!-- templates/home.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LOL Champion API</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <h1>
         All league champions!
     </h1>
@@ -28,5 +21,4 @@
 
     {% endfor %}
 
-</body>
-</html>
+{% endblock %}

@@ -1,12 +1,5 @@
-<!-- templates/champion.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LOL Champion API</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <div>
         <img src="{{ url_for('static',filename='icons/{}.png'.format(champion.key) ) }}" style="height: 50px;">
         <h1>
@@ -41,5 +34,4 @@
 
 
     </div>
-</body>
-</html>
+{% endblock %}

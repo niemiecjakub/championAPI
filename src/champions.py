@@ -1,4 +1,3 @@
-
 from flask import abort, make_response
 from models import Champion, ChampionSchema
 

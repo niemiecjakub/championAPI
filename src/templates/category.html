@@ -1,12 +1,5 @@
-<!-- templates/legacy.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LOL Champion API</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <h1>
         {{ position.name }}
     </h1>
@@ -17,6 +10,5 @@
                 {{ champion}}
             </li>
         {% endfor %}
-        </ul>
-</body>
-</html>
+    </ul>
+{% endblock %}
