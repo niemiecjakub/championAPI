@@ -52,6 +52,19 @@ def send_message(data):
     print(data)
     emit("send_message", data, broadcast=True)
 
+@config.socketio.on('join')
+def on_join(data):
+    username = data['name']
+    room = data['room']
+    join_room(room)
+    send(username + ' has entered the room.', to=room)
+
+@config.socketio.on('leave')
+def on_leave(data):
+    username = data['name']
+    room = data['room']
+    leave_room(room)
+    send(username + ' has left the room.', to=room)
 
 if __name__ == "__main__":  
     # app.run(host="0.0.0.0", port=8000, debug=True)
