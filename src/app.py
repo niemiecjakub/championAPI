@@ -42,28 +42,36 @@ def category(category, name):
     return render_template("category.html", category=category, name=name)
 
 
+rooms = {}
 
 @config.socketio.on("connect")
 def handle_connected():
-    print("client has connected")
+    print("client has connected: ")
+
+@config.socketio.on("disconnect")
+def handle_disconnect():
+    print("Disconnected")
 
 @config.socketio.on("send_message")
 def send_message(data):
-    print(data)
-    emit("send_message", data, broadcast=True)
+    room = data['roomId']
+    emit("send_message", data, to=room)
 
-@config.socketio.on('join')
-def on_join(data):
+
+@config.socketio.on('room_join')
+def room_join(data):
     username = data['name']
-    room = data['room']
+    room = data['roomId']
     join_room(room)
+    print(username, " has joined room: ", room)
     send(username + ' has entered the room.', to=room)
 
-@config.socketio.on('leave')
-def on_leave(data):
+@config.socketio.on('room_leave')
+def room_leave(data):
     username = data['name']
-    room = data['room']
+    room = data['roomId']
     leave_room(room)
+    print(username, " has left room: ", room)
     send(username + ' has left the room.', to=room)
 
 if __name__ == "__main__":  
