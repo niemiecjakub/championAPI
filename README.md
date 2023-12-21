@@ -1,7 +1,5 @@
 # Champion API
 
- hosted on https://kniemiec.pythonanywhere.com/
- 
 ## Description
 
 This is get-only API for League of Legends champions. Data comes from scraping League of Legends fandom wiki page.
